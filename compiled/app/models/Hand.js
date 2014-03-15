@@ -34,7 +34,7 @@
         return score + (card.get('revealed') ? card.get('value') : 0);
       }, 0);
       if (score > 21) {
-        console.log('hand trigger bust');
+        console.log('bust : hand.coffee');
         this.trigger('bust');
       }
       if (hasAce) {

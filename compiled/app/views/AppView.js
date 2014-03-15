@@ -10,7 +10,7 @@
       return AppView.__super__.constructor.apply(this, arguments);
     }
 
-    AppView.prototype.template = _.template('<button class="hit-button">Hit</button> <button class="stand-button">Stand</button> <div class="player-hand-container"></div> <div class="dealer-hand-container"></div>');
+    AppView.prototype.template = _.template('<button class="hit-button">Hit</button> <button class="stand-button">Stand</button> <button class="new-game-button">New Game</button> <span>Win Count: <span class="win-count">0</span></span> <div class="player-hand-container"></div> <div class="dealer-hand-container"></div>');
 
     AppView.prototype.events = {
       "click .hit-button": function() {
@@ -18,6 +18,16 @@
       },
       "click .stand-button": function() {
         return this.model.get('playerHand').stand();
+      },
+      "click .new-game-button": function() {
+        var deck;
+        if (this.model.get('deck').length < 11) {
+          console.log('shuffling from appview');
+          this.model.set('deck', deck = new Deck());
+        }
+        this.model.set('playerHand', this.model.get('deck').dealPlayer());
+        this.model.set('dealerHand', this.model.get('deck').dealDealer());
+        return this.render();
       }
     };
 

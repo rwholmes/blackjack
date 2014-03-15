@@ -1,7 +1,10 @@
 class window.AppView extends Backbone.View
 
   template: _.template '
-    <button class="hit-button">Hit</button> <button class="stand-button">Stand</button>
+    <button class="hit-button">Hit</button>
+    <button class="stand-button">Stand</button>
+    <button class="new-game-button">New Game</button>
+    <span>Win Count: <span class="win-count">0</span></span>
     <div class="player-hand-container"></div>
     <div class="dealer-hand-container"></div>
   '
@@ -9,6 +12,15 @@ class window.AppView extends Backbone.View
   events:
     "click .hit-button": -> @model.get('playerHand').hit()
     "click .stand-button": -> @model.get('playerHand').stand()
+    "click .new-game-button": ->
+      # $('body').html('')
+      if @model.get('deck').length < 11
+        console.log 'shuffling from appview'
+        @model.set 'deck', deck = new Deck()
+      @model.set 'playerHand', @model.get('deck').dealPlayer()
+      @model.set 'dealerHand', @model.get('deck').dealDealer()
+      @render()
+      # new AppView(model: new App()).$el.prependTo 'body'
 
   initialize: ->
     @render()
@@ -21,6 +33,7 @@ class window.AppView extends Backbone.View
     @model.get('playerHand').on 'stand', ->
       @model.dealerPlay()
     , @
+    # @model.on 'change', -> @render()
 
   render: ->
     @$el.children().detach()

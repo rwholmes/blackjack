@@ -14,21 +14,35 @@
       var deck;
       this.set('deck', deck = new Deck());
       this.set('playerHand', deck.dealPlayer());
-      return this.set('dealerHand', deck.dealDealer());
+      this.set('dealerHand', deck.dealDealer());
+      return this.wincount = 0;
     };
 
     App.prototype.dealerPlay = function() {
-      var dealerhand, score, _results;
+      var dealerScore, dealerhand, playerScore, playerhand, wincount;
       console.log('dealer playing');
       dealerhand = this.get('dealerHand');
+      playerhand = this.get('playerHand');
       dealerhand.models[0].set('revealed', true);
-      score = dealerhand.scores()[0];
-      _results = [];
-      while (score < 17) {
+      dealerScore = dealerhand.scores()[0];
+      playerScore = playerhand.scores()[0];
+      while (dealerScore < 17) {
         dealerhand.hit();
-        _results.push(score = dealerhand.scores()[0]);
+        dealerScore = dealerhand.scores()[0];
       }
-      return _results;
+      switch (false) {
+        case dealerScore !== 21:
+          return alert('dealer wins');
+        case !(dealerScore < playerScore && dealerScore < 21):
+          alert('player wins');
+          wincount = parseInt($('.win-count').text());
+          wincount++;
+          return $('.win-count').text(wincount);
+        case !(dealerScore > playerScore && dealerScore < 21):
+          return alert('dealer wins');
+        case dealerScore !== playerScore:
+          return alert('push');
+      }
     };
 
     return App;
