@@ -12,11 +12,13 @@ class window.App extends Backbone.Model
     dealerhand = @get 'dealerHand'
     playerhand = @get 'playerHand'
     dealerhand.models[0].set('revealed', true)
-    dealerScore = dealerhand.scores()[0]
-    playerScore = playerhand.scores()[0]
+    dealerScore = @getBestScore(dealerhand.scores())
+    playerScore = @getBestScore(playerhand.scores())
+
     while dealerScore < 17
       dealerhand.hit()
-      dealerScore = dealerhand.scores()[0]
+      dealerScore = @getBestScore(dealerhand.scores())
+
     switch
       when dealerScore is 21 then alert 'dealer wins'
       when (dealerScore < playerScore and dealerScore < 21)
@@ -30,6 +32,13 @@ class window.App extends Backbone.Model
       when dealerScore is playerScore then alert 'push'
 
 
-
-
+  getBestScore: (scores) ->
+    a = scores[0]
+    b = scores[1]
+    if not b
+      a
+    else if b > 21
+      a
+    else
+      b
 

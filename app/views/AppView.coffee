@@ -13,14 +13,14 @@ class window.AppView extends Backbone.View
     "click .hit-button": -> @model.get('playerHand').hit()
     "click .stand-button": -> @model.get('playerHand').stand()
     "click .new-game-button": ->
-      # $('body').html('')
-      if @model.get('deck').length < 11
-        console.log 'shuffling from appview'
-        @model.set 'deck', deck = new Deck()
-      @model.set 'playerHand', @model.get('deck').dealPlayer()
-      @model.set 'dealerHand', @model.get('deck').dealDealer()
-      @render()
-      # new AppView(model: new App()).$el.prependTo 'body'
+      # if @model.get('deck').length < 11
+      #   alert 'Shuffling...'
+      #   @model.set 'deck', deck = new Deck()
+      # @model.set 'playerHand', @model.get('deck').dealPlayer()
+      # @model.set 'dealerHand', @model.get('deck').dealDealer()
+      # @render()
+      $('body').html('')
+      new AppView(model: new App()).$el.prependTo 'body'
 
   initialize: ->
     @render()

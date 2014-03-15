@@ -20,14 +20,10 @@
         return this.model.get('playerHand').stand();
       },
       "click .new-game-button": function() {
-        var deck;
-        if (this.model.get('deck').length < 11) {
-          console.log('shuffling from appview');
-          this.model.set('deck', deck = new Deck());
-        }
-        this.model.set('playerHand', this.model.get('deck').dealPlayer());
-        this.model.set('dealerHand', this.model.get('deck').dealDealer());
-        return this.render();
+        $('body').html('');
+        return new AppView({
+          model: new App()
+        }).$el.prependTo('body');
       }
     };
 
