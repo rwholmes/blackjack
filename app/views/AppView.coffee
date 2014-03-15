@@ -19,8 +19,8 @@ class window.AppView extends Backbone.View
       # @model.set 'playerHand', @model.get('deck').dealPlayer()
       # @model.set 'dealerHand', @model.get('deck').dealDealer()
       # @render()
-      $('body').html('')
-      new AppView(model: new App()).$el.prependTo 'body'
+      $('.bottom').html('')
+      new AppView(model: new App()).$el.prependTo '.bottom'
 
   initialize: ->
     @render()

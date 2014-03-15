@@ -1,3 +1,10 @@
+.clearfix:after {
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
 .card {
   float: left;
   border: solid 1px black;
@@ -13,4 +20,36 @@
 
 .hand {
   overflow: auto;
+}
+.bottom {
+  /*float: left;*/
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.top {
+  text-align: center;
+  padding: 10px;
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  /*float: left;*/
+  /*margin-left: 20px;*/
+}
+h1 {
+  font-size: 50px;
+  font-family: 'Warnes', cursive;
+  color: orange;
+     -webkit-text-fill-color: orange; /* Will override color (regardless of order) */
+     -webkit-text-stroke-width: 1px;
+     -webkit-text-stroke-color: blue;
+}
+h3 {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  font-size: 70px;
+  text-transform: uppercase;
+  font-family: 'Codystar', cursive;
 }

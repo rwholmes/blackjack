@@ -20,10 +20,10 @@
         return this.model.get('playerHand').stand();
       },
       "click .new-game-button": function() {
-        $('body').html('');
+        $('.bottom').html('');
         return new AppView({
           model: new App()
-        }).$el.prependTo('body');
+        }).$el.prependTo('.bottom');
       }
     };
 

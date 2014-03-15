@@ -2,8 +2,17 @@
   <head>
     <title>Blackjack</title>
     <link href="styles/app.css" rel="stylesheet" type="text/css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Codystar|Warnes' rel='stylesheet' type='text/css'>
   </head>
   <body>
+    <div class="container">
+      <div class="top">
+        <h1 class="casino-title">Casi<span class="n-toggle">n</span>o Ha<span class="ck-toggle">ck</span> <span class="r-toggle">R</span>eact<span class="or-toggle">or</span></h1>
+        <h3 class="message">Play Me<h3>
+      </div>
+      <div class="bottom">
+      </div>
+    </div>
     <script src="lib/jquery.js"></script>
     <script src="lib/underscore.js"></script>
     <script src="lib/backbone.js"></script>
@@ -18,5 +27,48 @@
     <script src="compiled/app/views/AppView.js"></script>
 
     <script src="compiled/app/main.js"></script>
+
+    <script>
+      $(function() {
+      var allWords = $('h3.message').text().split('');
+        $('h3.message').html('');
+        for (var i=0; i<allWords.length; i++) {
+          $('h3.message').append('<span>' + allWords[i] + '</span>' + ' ');
+        }
+        var changeColors = function() {
+          $('h3 span').css('color', function(){
+            var randomColor = Math.floor(Math.random()*16777215).toString(16);
+            return '#' + randomColor;
+          });
+          setTimeout(function(){
+            changeColors();
+          }, 100);
+        }
+
+        changeColors();
+      });
+
+      $(function() {
+        var flashTitle = function(selector){
+          selector.css('visibility', 'hidden');
+          setTimeout(function(){
+            selector.css('visibility', 'visible');
+          }, 100);
+          setTimeout(function(){
+            flashTitle(selector);
+          }, Math.floor(Math.random()*(5000 - 1000 + 1) + 1000));
+        };
+        var ntog = $('.n-toggle');
+        var rtog = $('.r-toggle');
+        var ortog = $('.or-toggle');
+        var cktog = $('.ck-toggle');
+        // flashTitle($('.r-toggle'));
+        flashTitle(ntog);
+        flashTitle(rtog);
+        flashTitle(ortog);
+        flashTitle(cktog);
+      });
+
+    </script>
   </body>
 </html>
