@@ -14,7 +14,52 @@
       var deck;
       this.set('deck', deck = new Deck());
       this.set('playerHand', deck.dealPlayer());
+<<<<<<< HEAD
       return this.set('dealerHand', deck.dealDealer());
+=======
+      this.set('dealerHand', deck.dealDealer());
+      return this.wincount = 0;
+    };
+
+    App.prototype.dealerPlay = function() {
+      var dealerScore, dealerhand, playerScore, playerhand, wincount;
+      console.log('dealer playing');
+      dealerhand = this.get('dealerHand');
+      playerhand = this.get('playerHand');
+      dealerhand.models[0].set('revealed', true);
+      dealerScore = this.getBestScore(dealerhand.scores());
+      playerScore = this.getBestScore(playerhand.scores());
+      while (dealerScore < 17) {
+        dealerhand.hit();
+        dealerScore = this.getBestScore(dealerhand.scores());
+      }
+      switch (false) {
+        case dealerScore !== 21:
+          return alert('dealer wins');
+        case !(dealerScore < playerScore && dealerScore < 21):
+          wincount = JSON.parse(localStorage.getItem('scoreCount')) || 0;
+          $('.win-count').text(++wincount);
+          localStorage.setItem('scoreCount', wincount);
+          return alert('player wins');
+        case !(dealerScore > playerScore && dealerScore < 21):
+          return alert('dealer wins');
+        case dealerScore !== playerScore:
+          return alert('push');
+      }
+    };
+
+    App.prototype.getBestScore = function(scores) {
+      var a, b;
+      a = scores[0];
+      b = scores[1];
+      if (!b) {
+        return a;
+      } else if (b > 21) {
+        return a;
+      } else {
+        return b;
+      }
+>>>>>>> pair_programming
     };
 
     return App;

@@ -21,6 +21,13 @@
       return this.add(this.deck.pop()).last();
     };
 
+<<<<<<< HEAD
+=======
+    Hand.prototype.stand = function() {
+      return this.trigger('stand');
+    };
+
+>>>>>>> pair_programming
     Hand.prototype.scores = function() {
       var hasAce, score;
       hasAce = this.reduce(function(memo, card) {
@@ -29,6 +36,13 @@
       score = this.reduce(function(score, card) {
         return score + (card.get('revealed') ? card.get('value') : 0);
       }, 0);
+<<<<<<< HEAD
+=======
+      if (score > 21) {
+        console.log('bust : hand.coffee');
+        this.trigger('bust');
+      }
+>>>>>>> pair_programming
       if (hasAce) {
         return [score, score + 10];
       } else {

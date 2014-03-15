@@ -31,7 +31,11 @@
           model: card
         }).$el;
       }));
+<<<<<<< HEAD
       return this.$('.score').text(this.collection.scores()[0]);
+=======
+      return this.$('.score').text(this.collection.scores().join(' or '));
+>>>>>>> pair_programming
     };
 
     return HandView;

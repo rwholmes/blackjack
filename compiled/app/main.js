@@ -2,7 +2,11 @@
 (function() {
   new AppView({
     model: new App()
+<<<<<<< HEAD
   }).$el.appendTo('body');
+=======
+  }).$el.appendTo('.bottom');
+>>>>>>> pair_programming
 
 }).call(this);
 

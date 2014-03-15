@@ -10,7 +10,11 @@
       return AppView.__super__.constructor.apply(this, arguments);
     }
 
+<<<<<<< HEAD
     AppView.prototype.template = _.template('<button class="hit-button">Hit</button> <button class="stand-button">Stand</button> <div class="player-hand-container"></div> <div class="dealer-hand-container"></div>');
+=======
+    AppView.prototype.template = _.template('<button class="hit-button">Hit</button> <button class="stand-button">Stand</button> <button class="new-game-button">New Game</button> <span>Win Count: <span class="win-count">0</span></span> <div class="player-hand-container"></div> <div class="dealer-hand-container"></div>');
+>>>>>>> pair_programming
 
     AppView.prototype.events = {
       "click .hit-button": function() {
@@ -18,11 +22,38 @@
       },
       "click .stand-button": function() {
         return this.model.get('playerHand').stand();
+<<<<<<< HEAD
+=======
+      },
+      "click .new-game-button": function() {
+        $('.bottom').html('');
+        return new AppView({
+          model: new App()
+        }).$el.prependTo('.bottom');
+>>>>>>> pair_programming
       }
     };
 
     AppView.prototype.initialize = function() {
+<<<<<<< HEAD
       return this.render();
+=======
+      this.render();
+      this.model.get('playerHand').on('bust', function() {
+        return alert('Busted!!!');
+      }, this);
+      this.model.get('dealerHand').on('bust', function() {
+        var wincount;
+        console.log('detected trigger for dealer bust');
+        wincount = JSON.parse(localStorage.getItem('scoreCount')) || 0;
+        $('.win-count').text(++wincount);
+        localStorage.setItem('scoreCount', wincount);
+        return alert('You win!!!');
+      }, this);
+      return this.model.get('playerHand').on('stand', function() {
+        return this.model.dealerPlay();
+      }, this);
+>>>>>>> pair_programming
     };
 
     AppView.prototype.render = function() {
@@ -36,6 +67,13 @@
       }).el);
     };
 
+<<<<<<< HEAD
+=======
+    AppView.prototype.reDeal = function() {
+      return this.model.set('playerHand', this.model.get('deck').dealPlayer());
+    };
+
+>>>>>>> pair_programming
     return AppView;
 
   })(Backbone.View);
