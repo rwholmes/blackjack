@@ -26,6 +26,9 @@
       this.model.get('playerHand').on('bust', function() {
         return alert('Busted!!!');
       }, this);
+      this.model.get('dealerHand').on('bust', function() {
+        return alert('You win!!!');
+      }, this);
       return this.model.get('playerHand').on('stand', function() {
         return this.model.dealerPlay();
       }, this);

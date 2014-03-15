@@ -18,11 +18,17 @@
     };
 
     App.prototype.dealerPlay = function() {
-      var firstcard;
+      var dealerhand, score, _results;
       console.log('dealer playing');
-      firstcard = this.get('dealerHand');
-      firstcard.models[0].set('revealed', true);
-      return console.log(firstcard, firstcard.models[0]);
+      dealerhand = this.get('dealerHand');
+      dealerhand.models[0].set('revealed', true);
+      score = dealerhand.scores()[0];
+      _results = [];
+      while (score < 17) {
+        dealerhand.hit();
+        _results.push(score = dealerhand.scores()[0]);
+      }
+      return _results;
     };
 
     return App;

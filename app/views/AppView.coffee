@@ -15,6 +15,9 @@ class window.AppView extends Backbone.View
     @model.get('playerHand').on 'bust', ->
       alert('Busted!!!')
     , @
+    @model.get('dealerHand').on 'bust', ->
+      alert('You win!!!')
+    , @
     @model.get('playerHand').on 'stand', ->
       @model.dealerPlay()
     , @

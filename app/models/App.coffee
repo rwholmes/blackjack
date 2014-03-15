@@ -11,7 +11,11 @@ class window.App extends Backbone.Model
 
   dealerPlay: ->
     console.log('dealer playing')
-    firstcard = @get 'dealerHand'
-    firstcard.models[0].set('revealed', true)
-    console.log(firstcard, firstcard.models[0])
-
+    dealerhand = @get 'dealerHand'
+    dealerhand.models[0].set('revealed', true)
+    score = dealerhand.scores()[0]
+    while score < 17
+      dealerhand.hit()
+      score = dealerhand.scores()[0]
+    # dealerhand.hit() if score < 17
+    #   @dealerPlay()
