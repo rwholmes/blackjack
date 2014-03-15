@@ -34,10 +34,10 @@
         case dealerScore !== 21:
           return alert('dealer wins');
         case !(dealerScore < playerScore && dealerScore < 21):
-          alert('player wins');
-          wincount = parseInt($('.win-count').text());
-          wincount++;
-          return $('.win-count').text(wincount);
+          wincount = JSON.parse(localStorage.getItem('scoreCount')) || 0;
+          $('.win-count').text(++wincount);
+          localStorage.setItem('scoreCount', wincount);
+          return alert('player wins');
         case !(dealerScore > playerScore && dealerScore < 21):
           return alert('dealer wins');
         case dealerScore !== playerScore:

@@ -22,11 +22,10 @@ class window.App extends Backbone.Model
     switch
       when dealerScore is 21 then alert 'dealer wins'
       when (dealerScore < playerScore and dealerScore < 21)
+        wincount = JSON.parse(localStorage.getItem('scoreCount')) or 0
+        $('.win-count').text(++wincount)
+        localStorage.setItem('scoreCount', wincount)
         alert 'player wins'
-        # @wincount++
-        wincount = parseInt($('.win-count').text())
-        wincount++
-        $('.win-count').text(wincount)
 
       when (dealerScore > playerScore and dealerScore < 21) then alert 'dealer wins'
       when dealerScore is playerScore then alert 'push'

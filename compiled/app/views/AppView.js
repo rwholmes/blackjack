@@ -33,6 +33,11 @@
         return alert('Busted!!!');
       }, this);
       this.model.get('dealerHand').on('bust', function() {
+        var wincount;
+        console.log('detected trigger for dealer bust');
+        wincount = JSON.parse(localStorage.getItem('scoreCount')) || 0;
+        $('.win-count').text(++wincount);
+        localStorage.setItem('scoreCount', wincount);
         return alert('You win!!!');
       }, this);
       return this.model.get('playerHand').on('stand', function() {

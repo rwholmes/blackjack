@@ -29,6 +29,10 @@ class window.AppView extends Backbone.View
       alert('Busted!!!')
     , @
     @model.get('dealerHand').on 'bust', ->
+      console.log('detected trigger for dealer bust')
+      wincount = JSON.parse(localStorage.getItem('scoreCount')) or 0
+      $('.win-count').text(++wincount)
+      localStorage.setItem('scoreCount', wincount)
       alert('You win!!!')
     , @
     @model.get('playerHand').on 'stand', ->
