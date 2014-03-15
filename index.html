@@ -29,6 +29,14 @@
     <script src="compiled/app/main.js"></script>
 
     <script>
+    $(function(){
+      $.each($('.card'), function() {
+        var cardName = $(this).attr('id');
+        $(this).css('background-image', 'url(styles/classic-cards/'+cardName+'.png)');
+      });
+    });
+
+
       $(function() {
       var allWords = $('h3.message').text().split('');
         $('h3.message').html('');

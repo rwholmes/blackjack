@@ -12,7 +12,7 @@
 
     CardView.prototype.className = 'card';
 
-    CardView.prototype.template = _.template('<%= rankName %> of <%= suitName %>');
+    CardView.prototype.template = _.template('');
 
     CardView.prototype.initialize = function() {
       this.model.on('change', (function(_this) {
@@ -26,6 +26,7 @@
     CardView.prototype.render = function() {
       this.$el.children().detach().end().html;
       this.$el.html(this.template(this.model.attributes));
+      this.$el.attr('id', this.model.attributes.rankName + this.model.attributes.suitName);
       if (!this.model.get('revealed')) {
         return this.$el.addClass('covered');
       }
