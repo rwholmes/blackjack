@@ -27,6 +27,7 @@
       this.$el.children().detach().end().html;
       this.$el.html(this.template(this.model.attributes));
       this.$el.attr('id', this.model.attributes.rankName + this.model.attributes.suitName);
+      this.$el.css('background-image', 'url(styles/classic-cards/' + this.model.attributes.rankName + this.model.attributes.suitName + '.png)');
       if (!this.model.get('revealed')) {
         return this.$el.addClass('covered');
       }

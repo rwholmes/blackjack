@@ -29,54 +29,52 @@
     <script src="compiled/app/main.js"></script>
 
     <script>
-    $(function(){
-      $.each($('.card'), function() {
-        var cardName = $(this).attr('id');
-        $(this).css('background-image', 'url(styles/classic-cards/'+cardName+'.png)');
-      });
+    // $(function(){
+    //   $.each($('.card'), function() {
+    //     var cardName = $(this).attr('id');
+    //     $(this).css('background-image', 'url(styles/classic-cards/'+cardName+'.png)');
+    //   });
+    // });
+
+    $(function() {
+    var allWords = $('h3.message').text().split('');
+      $('h3.message').html('');
+      for (var i=0; i<allWords.length; i++) {
+        $('h3.message').append('<span>' + allWords[i] + '</span>' + ' ');
+      }
+      var changeColors = function() {
+        $('h3 span').css('color', function(){
+          var randomColor = Math.floor(Math.random()*16777215).toString(16);
+          return '#' + randomColor;
+        });
+        setTimeout(function(){
+          changeColors();
+        }, 100);
+      }
+
+      changeColors();
     });
 
-
-      $(function() {
-      var allWords = $('h3.message').text().split('');
-        $('h3.message').html('');
-        for (var i=0; i<allWords.length; i++) {
-          $('h3.message').append('<span>' + allWords[i] + '</span>' + ' ');
-        }
-        var changeColors = function() {
-          $('h3 span').css('color', function(){
-            var randomColor = Math.floor(Math.random()*16777215).toString(16);
-            return '#' + randomColor;
-          });
-          setTimeout(function(){
-            changeColors();
-          }, 100);
-        }
-
-        changeColors();
-      });
-
-      $(function() {
-        var flashTitle = function(selector){
-          selector.css('visibility', 'hidden');
-          setTimeout(function(){
-            selector.css('visibility', 'visible');
-          }, 100);
-          setTimeout(function(){
-            flashTitle(selector);
-          }, Math.floor(Math.random()*(5000 - 1000 + 1) + 1000));
-        };
-        var ntog = $('.n-toggle');
-        var rtog = $('.r-toggle');
-        var ortog = $('.or-toggle');
-        var cktog = $('.ck-toggle');
-        // flashTitle($('.r-toggle'));
-        flashTitle(ntog);
-        flashTitle(rtog);
-        flashTitle(ortog);
-        flashTitle(cktog);
-      });
-
+    $(function() {
+      var flashTitle = function(selector){
+        selector.css('visibility', 'hidden');
+        setTimeout(function(){
+          selector.css('visibility', 'visible');
+        }, 100);
+        setTimeout(function(){
+          flashTitle(selector);
+        }, Math.floor(Math.random()*(5000 - 1000 + 1) + 1000));
+      };
+      var ntog = $('.n-toggle');
+      var rtog = $('.r-toggle');
+      var ortog = $('.or-toggle');
+      var cktog = $('.ck-toggle');
+      // flashTitle($('.r-toggle'));
+      flashTitle(ntog);
+      flashTitle(rtog);
+      flashTitle(ortog);
+      flashTitle(cktog);
+    });
     </script>
   </body>
 </html>
